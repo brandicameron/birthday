@@ -8,9 +8,13 @@ $border-radius: 15px;
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   text-align: center;
   color: #333;
+}
+
+main {
+  margin-bottom: 5rem;
 }
 
 .form-container {
@@ -104,7 +108,7 @@ input {
   flex: auto;
 }
 
-input[type="submit"] {
+input[type='submit'] {
   width: 100%;
   background: $accent-color;
   color: white;
