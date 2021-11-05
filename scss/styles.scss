@@ -1,5 +1,7 @@
 $accent-color: #4629ee;
-$border-radius: 15px;
+$border-radius: 25px;
+$border: 10px solid #131313;
+$lg-text: 2.3rem;
 
 * {
   margin: 0;
@@ -7,10 +9,22 @@ $border-radius: 15px;
   box-sizing: border-box;
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   text-align: center;
-  color: #333;
+  color: #131313;
+  width: 90vw;
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
 }
 
 main {
@@ -18,75 +32,17 @@ main {
 }
 
 .form-container {
-  border: 3px solid $accent-color;
-  width: 90vw;
-  max-width: 500px;
-  border-radius: $border-radius;
+  @extend .flex;
   margin: 1rem auto 0 auto;
-}
-
-.greeting {
-  font-size: 2.5rem;
-  margin: 1.5rem 0 1rem 0;
-  line-height: 100%;
-}
-
-.day-of-week {
-  width: 90vw;
-  max-width: 500px;
-  height: 100px;
-  background: $accent-color;
+  padding: 20px;
+  background-color: $accent-color;
+  border: $border;
   color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1.5rem auto;
-  font-size: 1.5rem;
-  border-radius: $border-radius;
-  opacity: 0;
-  transition: opacity 300ms linear;
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 220px;
-  opacity: 0;
-  transition: opacity 300ms linear;
-  padding: 2rem 0;
-}
-
-#heading {
-  margin-bottom: 1rem;
-}
-
-.movie-container,
-.song-container {
-  opacity: 0;
-  transition: opacity 300ms linear;
-}
-
-.movie-title,
-.song-title {
-  margin: 2rem auto 1rem auto;
-  font-weight: normal;
-  font-size: 1rem;
-}
-
-.movie,
-.song {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 0.25rem auto;
-  color: $accent-color;
-}
-
-iframe {
-  border-radius: $border-radius;
-  width: 80vw;
-  max-width: 500px;
+.heading {
+  font-size: $lg-text;
+  margin: 0.5rem 0;
 }
 
 form {
@@ -94,51 +50,98 @@ form {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 1.5rem auto;
+}
+
+.submit-btn {
+  @extend .flex;
+  font-size: $lg-text;
+  width: 100%;
+  background: #fff;
+  color: $accent-color;
+  border: $border;
+  height: 65px;
+  margin-top: 0.65rem;
+  cursor: pointer;
+  box-shadow: 7px 9px 14.4px rgba(0, 0, 0, 0.5);
 }
 
 select,
 input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   padding: 10px;
-  height: 40px;
-  background: #f4f4f4;
-  border: 1px solid #f0f0f0;
-  border-radius: 4px;
+  background: #fff;
   margin: 5px 3px;
   flex: auto;
 }
 
-input[type='submit'] {
-  width: 100%;
-  background: $accent-color;
-  color: white;
-  height: 50px;
-  cursor: pointer;
-  border-radius: $border-radius;
+.day-of-week {
+  @extend .flex;
+  height: 100px;
+  border: $border;
+  margin-top: -8px;
+  opacity: 0;
+  transition: opacity 300ms linear;
+}
+
+#info-heading {
+  margin-bottom: 1rem;
 }
 
 .info {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
+  @extend .flex;
+  border: $border;
+  opacity: 0;
+  transition: opacity 300ms linear;
+  padding: 2rem 0;
+  margin-top: -8px;
 }
 
 ul {
-  display: flex;
-  justify-content: center;
+  @extend .flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  width: 99vw;
-  max-width: 500px;
 }
 
 li {
   list-style: none;
   margin: 0.3rem;
   font-size: 1.2rem;
-  border: 3px solid $accent-color;
+  border: 8px solid $accent-color;
   border-radius: $border-radius;
   padding: 10px;
   text-align: center;
+}
+
+.movie-container,
+.song-container {
+  border: $border;
+  margin-top: -8px;
+  opacity: 0;
+  transition: opacity 300ms linear;
+}
+
+.sentence {
+  margin: 2rem auto 1rem auto;
+  max-width: 275px;
+}
+
+.movie-title,
+.song-title {
+  display: block;
+  font-size: $lg-text;
+  line-height: 100%;
+  color: $accent-color;
+}
+
+iframe {
+  border-radius: $border-radius;
+  width: 80vw;
+  max-width: 450px;
+  max-height: 250px;
+  margin-bottom: 1.5rem;
 }
 
 button {

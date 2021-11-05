@@ -12,21 +12,27 @@
   <link rel="stylesheet" href="css/styles.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Share Graphic -->
-  <meta property="og:title" content="  TITLE  HERE  " />
-  <meta property="og:image" content="  IMAGE URL  HERE  " />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@800&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="Fun Facts" />
+  <meta property="og:image" content="./img/share.jpg" />
 </head>
 
 <body>
 
   <main>
     <section class="form-container">
-      <h1 class="greeting">Enter Your Birthday</h1>
+      <h1 class="heading">Enter Birthday</h1>
       <form id="datePicker">
         <select name="month" id="month">
           <option value="0">Month</option>
-          <option value="01">January</option>
+          <option value="01" selected>January</option>
           <option value="02">February</option>
           <option value="03">March</option>
           <option value="04">April</option>
@@ -36,7 +42,7 @@
           <option value="08">August</option>
           <option value="09">September</option>
           <option value="10">October</option>
-          <option value="11" selected>November</option>
+          <option value="11">November</option>
           <option value="12">December</option>
         </select>
         <select name="day" id="day">
@@ -49,7 +55,7 @@
           <option value="06">6</option>
           <option value="07">7</option>
           <option value="08">8</option>
-          <option value="09" selected>9</option>
+          <option value="09">9</option>
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
@@ -59,7 +65,7 @@
           <option value="16">16</option>
           <option value="17">17</option>
           <option value="18">18</option>
-          <option value="19">19</option>
+          <option value="19" selected>19</option>
           <option value="20">20</option>
           <option value="21">21</option>
           <option value="22">22</option>
@@ -99,8 +105,8 @@
           <option value="1999">1999</option>
           <option value="1998">1998</option>
           <option value="1997">1997</option>
-          <option selected value="1996">1996</option>
-          <option value="1995">1995</option>
+          <option value="1996">1996</option>
+          <option selected value="1995">1995</option>
           <option value="1994">1994</option>
           <option value="1993">1993</option>
           <option value="1992">1992</option>
@@ -185,8 +191,8 @@
           <option value="1913">1913</option>
           <option value="1912">1912</option>
         </select>
-        <input type="time" name="time" id="time" value="06:00">
-        <input type="submit" class="findSong" value="Get Info">
+        <input type="time" name="time" id="time" value="12:00">
+        <button class="submit-btn">Submit</button>
       </form>
     </section>
 
@@ -194,7 +200,7 @@
 
 
     <div class="info" id="info">
-      <h3 id="heading"></h3>
+      <h3 id="info-heading"></h3>
       <ul>
         <li id="years"></li>
         <li id="months"></li>
@@ -207,7 +213,7 @@
     </div>
 
     <section class="song-container">
-      <h3 class="song-title">The #1 song on the day <br> you were born was <span id="song" class="song"></span>
+      <h3 class="sentence">The #1 song on the day you were born was <span id="song-title" class="song-title"></span>
       </h3>
 
       <iframe id="youtube-song" width="500" height="300" src="" title="YouTube video player" frameborder="0"
@@ -216,7 +222,7 @@
     </section>
 
     <section class="movie-container">
-      <h3 class="movie-title">The #1 movie on the day <br> you were born was <span id="movie" class="movie"></span>
+      <h3 class="sentence">The #1 movie on the day you were born was <span id="movie-title" class="movie-title"></span>
       </h3>
 
       <iframe id="youtube-movie" width="500" height="300" src="" title="YouTube video player" frameborder="0"

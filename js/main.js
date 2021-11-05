@@ -1,13 +1,12 @@
-import { songData } from "./songData.js";
-import { movieData } from "./movieData.js";
-let month, day, year, time;
-let enteredDateTime;
+import { songData } from './songData.js';
+import { movieData } from './movieData.js';
+let month, day, year, time, enteredDateTime;
 
-function collectEnteredData() {
-  const enteredMonth = document.getElementById("month");
-  const enteredDay = document.getElementById("day");
-  const enteredYear = document.getElementById("year");
-  const enteredTime = document.getElementById("time");
+function collectUserData() {
+  const enteredMonth = document.getElementById('month');
+  const enteredDay = document.getElementById('day');
+  const enteredYear = document.getElementById('year');
+  const enteredTime = document.getElementById('time');
 
   month = enteredMonth.value;
   day = enteredDay.value;
@@ -16,21 +15,25 @@ function collectEnteredData() {
   enteredDateTime = moment().format(`${year}-${month}-${day} ${time}`);
 }
 
-function findDayofWeek() {
+function findDayofWeek(year, month, day) {
   let workingDate = moment(`${year}-${month}-${day}`);
   const dayOfWeek = workingDate.weekday();
-  const displayDayofWeek = document.getElementById("day-of-week");
   const weekdays = {
-    0: "Sunday",
-    1: "Monday",
-    2: "Tuesday",
-    3: "Wednesday",
-    4: "Thursday",
-    5: "Friday",
-    6: "Saturday",
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
   };
-  let dayBorn = weekdays[dayOfWeek];
-  displayDayofWeek.style.opacity = "1";
+  return weekdays[dayOfWeek];
+}
+
+function displayDayOfWeek() {
+  const dayBorn = findDayofWeek(year, month, day);
+  const displayDayofWeek = document.getElementById('day-of-week');
+  displayDayofWeek.style.opacity = '1';
   displayDayofWeek.textContent = `You were born on a ${dayBorn}.`;
 }
 
@@ -38,40 +41,48 @@ function calculateAge(dob) {
   function addCommas(num) {
     return num.toLocaleString();
   }
-  const years = addCommas(moment().diff(dob, "years"));
-  const months = addCommas(moment().diff(dob, "months"));
-  const weeks = addCommas(moment().diff(dob, "weeks"));
-  const days = addCommas(moment().diff(dob, "days"));
-  const hours = addCommas(moment().diff(dob, "hours"));
-  const minutes = addCommas(moment().diff(dob, "minutes"));
-  const seconds = addCommas(moment().diff(dob, "seconds"));
+  const years = addCommas(moment().diff(dob, 'years'));
+  const months = addCommas(moment().diff(dob, 'months'));
+  const weeks = addCommas(moment().diff(dob, 'weeks'));
+  const days = addCommas(moment().diff(dob, 'days'));
+  const hours = addCommas(moment().diff(dob, 'hours'));
 
-  const info = document.getElementById("info");
-  const heading = document.getElementById("heading");
-  const displayYears = document.getElementById("years");
-  const displayMonths = document.getElementById("months");
-  const displayWeeks = document.getElementById("weeks");
-  const displayDays = document.getElementById("days");
-  const displayHours = document.getElementById("hours");
-  const displayMinutes = document.getElementById("minutes");
-  const displaySeconds = document.getElementById("seconds");
+  const info = document.getElementById('info');
+  const infoHeading = document.getElementById('info-heading');
+  const displayYears = document.getElementById('years');
+  const displayMonths = document.getElementById('months');
+  const displayWeeks = document.getElementById('weeks');
+  const displayDays = document.getElementById('days');
+  const displayHours = document.getElementById('hours');
 
-  info.style.opacity = "1";
-  heading.textContent = "You have been alive for:";
+  info.style.opacity = '1';
+  infoHeading.textContent = 'You have been alive for:';
   displayYears.textContent = `${years} Years`;
   displayMonths.textContent = `${months} Months`;
   displayWeeks.textContent = `${weeks} Weeks`;
   displayDays.textContent = `${days} Days`;
   displayHours.textContent = `${hours} Hours`;
-  displayMinutes.textContent = `${minutes} Minutes`;
-  displaySeconds.textContent = `${seconds} Seconds`;
+
+  function checkSecondsAndMinutes() {
+    const seconds = addCommas(moment().diff(dob, 'seconds'));
+    const displaySeconds = document.getElementById('seconds');
+    displaySeconds.textContent = `${seconds} Seconds`;
+    const minutes = addCommas(moment().diff(dob, 'minutes'));
+    const displayMinutes = document.getElementById('minutes');
+    displayMinutes.textContent = `${minutes} Minutes`;
+  }
+
+  // run immediately for page display
+  checkSecondsAndMinutes();
+  // updates the seconds and minutes while page stays open
+  setInterval(checkSecondsAndMinutes, 1000);
 }
 
 function findSong() {
-  const songTextDisplay = document.getElementById("song");
-  const songVideo = document.getElementById("youtube-song");
-  const songContainer = document.querySelector(".song-container");
-  songContainer.style.opacity = "1";
+  const songTitle = document.getElementById('song-title');
+  const songVideo = document.getElementById('youtube-song');
+  const songContainer = document.querySelector('.song-container');
+  songContainer.style.opacity = '1';
   let enteredDate = moment().format(`${year}-${month}-${day}`);
   let correctSong;
 
@@ -87,15 +98,15 @@ function findSong() {
   });
 
   // Display Song Info
-  songTextDisplay.textContent = correctSong.songTitle;
+  songTitle.textContent = correctSong.songTitle;
   songVideo.src = `https://www.youtube.com/embed/${correctSong.youtubeId}`;
 }
 
 function findMovie() {
-  const movieTextDisplay = document.getElementById("movie");
-  const movieVideo = document.getElementById("youtube-movie");
-  const movieContainer = document.querySelector(".movie-container");
-  movieContainer.style.opacity = "1";
+  const movieTitle = document.getElementById('movie-title');
+  const movieVideo = document.getElementById('youtube-movie');
+  const movieContainer = document.querySelector('.movie-container');
+  movieContainer.style.opacity = '1';
   let enteredDate = moment().format(`${year}-${month}-${day}`);
   let correctMovie;
 
@@ -111,21 +122,22 @@ function findMovie() {
   });
 
   // Display Movie Info
-  movieTextDisplay.textContent = correctMovie.movieTitle;
+  movieTitle.textContent = correctMovie.movieTitle;
   movieVideo.src = `https://www.youtube.com/embed/${correctMovie.youtubeId}`;
 }
 
-function displayUserInfo(e) {
+function getBirthdayInfo(e) {
   e.preventDefault();
-  collectEnteredData();
-  findDayofWeek();
-  setInterval(() => {
-    calculateAge(enteredDateTime);
-  }, 1000);
+  collectUserData();
+  // findDayofWeek(year, month, day);
+  displayDayOfWeek();
+  calculateAge(enteredDateTime);
   findSong();
   findMovie();
 }
 
+// getBirthdayInfo();
+
 // Event Listener
-const form = document.getElementById("datePicker");
-form.addEventListener("submit", displayUserInfo);
+const form = document.getElementById('datePicker');
+form.addEventListener('submit', getBirthdayInfo);
